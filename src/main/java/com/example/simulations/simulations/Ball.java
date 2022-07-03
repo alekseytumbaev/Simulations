@@ -2,7 +2,7 @@ package com.example.simulations.simulations;
 
 public abstract class Ball {
 
-    protected int radius;
+    protected double radius;
     protected double x;
     protected double y;
     protected double velocityX;
@@ -10,7 +10,7 @@ public abstract class Ball {
 
 
     //getters
-    public int getRadius() {
+    public double getRadius() {
         return radius;
     }
 
