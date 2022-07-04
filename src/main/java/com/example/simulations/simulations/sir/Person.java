@@ -4,9 +4,13 @@ import com.example.simulations.simulations.Ball;
 
 public class Person extends Ball {
 
-    private static int susceptibleCount;
-    private static int infectedCount;
-    private static int recoveredCount;
+    static {
+        radius = 15;
+    }
+
+    private static int susceptibleCount = 0;
+    private static int infectedCount = 0;
+    private static int recoveredCount = 0;
 
     private PersonStatus status;
     public final boolean practiceSocialDistancing;
@@ -16,7 +20,6 @@ public class Person extends Ball {
         if (simulationWidth < 1 || simulationHeight < 1)
             throw new IllegalArgumentException("Width or height was less than one.");
 
-        radius = 15;
         setStatus(PersonStatus.SUSCEPTIBLE);
         recoveryTime = (int) (Math.random() * (700 - 500 + 1) + 500);
         this.practiceSocialDistancing = practiceSocialDistancing;
@@ -98,8 +101,6 @@ public class Person extends Ball {
         }
     }
 
-
-
     //getters
     public PersonStatus getStatus() {
         return status;
@@ -115,5 +116,9 @@ public class Person extends Ball {
 
     public static int getRecoveredCount() {
         return recoveredCount;
+    }
+
+    public static double getRadius() {
+        return radius;
     }
 }

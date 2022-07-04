@@ -1,5 +1,6 @@
 package com.example.simulations;
 
+import com.example.simulations.simulations.sir.Person;
 import com.example.simulations.simulations.sir.SIRSimulation;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -18,7 +19,7 @@ public class SimulationsApplication extends Application {
     public void start(Stage stage) {
         stage.setTitle("Simulations!");
 
-        SIRSimulation sir = new SIRSimulation(800,600,0);
+        SIRSimulation sir = new SIRSimulation(800,600,50);
         Canvas canvas = new Canvas(sir.getWidth(), sir.getHeight());
         StackPane stackPane = new StackPane(canvas);
 
@@ -44,7 +45,7 @@ public class SimulationsApplication extends Application {
                 case INFECTED -> gc.setFill(Color.RED);
                 case RECOVERED -> gc.setFill(Color.BLUE);
             }
-            gc.fillOval(p.getX(), p.getY(), p.getRadius(), p.getRadius());
+            gc.fillOval(p.getX(), p.getY(), Person.getRadius(), Person.getRadius());
         });
 
         sir.makeOneStep();

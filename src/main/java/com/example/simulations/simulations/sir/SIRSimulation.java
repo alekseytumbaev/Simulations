@@ -44,10 +44,10 @@ public class SIRSimulation extends Simulation {
         people.forEach( p -> {
             p.move();
 
-            if(p.getX() > width - p.getRadius() || p.getX() < 0)
+            if(p.getX() > width - Person.getRadius() || p.getX() < 0)
                 p.invertVelocityX();
 
-            if(p.getY() > height - p.getRadius() || p.getY() < 0)
+            if(p.getY() > height - Person.getRadius() || p.getY() < 0)
                 p.invertVelocityY();
 
             people.forEach(p2 -> {
