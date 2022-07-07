@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="TOP_CENTER" prefHeight="295.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.simulations.controllers.ChooseSimulationController">
+   <children>
+      <Label prefHeight="70.0" prefWidth="145.0" text="SIR SIMULATION">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <HBox alignment="TOP_CENTER" prefHeight="44.0" prefWidth="402.0" spacing="10.0">
+         <children>
+            <TextField fx:id="sirWidth" prefHeight="26.0" prefWidth="78.0" promptText="width (&gt;60)" />
+            <TextField fx:id="sirHeight" prefHeight="26.0" prefWidth="81.0" promptText="height (&gt;60)" />
+            <TextField fx:id="sirPopulation" disable="true" prefHeight="26.0" prefWidth="101.0" promptText="population (&gt;1)" />
+            <CheckBox fx:id="sirComputePopulation" mnemonicParsing="false" prefHeight="26.0" prefWidth="134.0" selected="true" text="compute population" />
+         </children>
+      </HBox>
+      <Label prefHeight="10.0" prefWidth="262.0" text="percent of people practicing social distancing" />
+      <Slider fx:id="sirPercentOfPeoplePracticingSocialDistancing" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="399.0" showTickLabels="true" showTickMarks="true" />
+      <Button fx:id="sirStartNewSimulation" disable="true" mnemonicParsing="false" onAction="#sirTryToStartNewSimulation" text="Start New Simulation">
+         <font>
+            <Font size="14.0" />
+         </font>
+            </Button>
+   </children>
+</VBox>

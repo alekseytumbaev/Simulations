@@ -5,4 +5,8 @@ module com.example.simulations {
 
     opens com.example.simulations to javafx.fxml;
     exports com.example.simulations;
+    exports com.example.simulations.simulations.predatorprey;
+    opens com.example.simulations.simulations.predatorprey to javafx.fxml;
+    exports com.example.simulations.controllers;
+    opens com.example.simulations.controllers to javafx.fxml;
 }
