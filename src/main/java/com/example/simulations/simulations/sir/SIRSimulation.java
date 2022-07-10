@@ -1,5 +1,6 @@
 package com.example.simulations.simulations.sir;
 
+import com.example.simulations.simulations.Ball;
 import com.example.simulations.simulations.Simulation;
 
 import java.util.ArrayList;
@@ -7,6 +8,7 @@ import java.util.List;
 
 public class SIRSimulation extends Simulation {
 
+    private final List<Ball> balls;
     private final List<Person> people;
 
     public SIRSimulation(int width, int height, int population, int percentOfPeoplePracticingSocialDistancing) {
@@ -18,6 +20,7 @@ public class SIRSimulation extends Simulation {
         this.width = width;
         this.height = height;
 
+        //initializing people
         people = new ArrayList<>(population);
 
         int pOPPSD = percentOfPeoplePracticingSocialDistancing;
@@ -29,7 +32,10 @@ public class SIRSimulation extends Simulation {
         for (int i = 0; i < population; i++) {
             people.add(new Person(width, height, i < population * pOPPSD / 100));
         }
-        people.get(people.size() - 1).setStatus(PersonStatus.INFECTED);
+        people.get(people.size() - 1).setStatus(PersonStatus.INFECTED); //infect the last person
+
+
+        balls = new ArrayList<>(people);
     }
 
     public SIRSimulation(int width, int height, int percentOfPeoplePracticingSocialDistancing) {
@@ -44,10 +50,10 @@ public class SIRSimulation extends Simulation {
         people.forEach( p -> {
             p.move();
 
-            if(p.getX() > width - Person.getRadius() || p.getX() < 0)
+            if(p.getX() > width - p.getRadius() || p.getX() < 0)
                 p.invertVelocityX();
 
-            if(p.getY() > height - Person.getRadius() || p.getY() < 0)
+            if(p.getY() > height - p.getRadius() || p.getY() < 0)
                 p.invertVelocityY();
 
             people.forEach(p2 -> {
@@ -55,6 +61,11 @@ public class SIRSimulation extends Simulation {
                     p.collision(p2);
             });
         });
+    }
+
+    @Override
+    public List<Ball> getBalls() {
+        return balls;
     }
 
     public List<Person> getPeople() {

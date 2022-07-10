@@ -1,12 +1,9 @@
 package com.example.simulations.simulations.sir;
 
 import com.example.simulations.simulations.Ball;
+import javafx.scene.paint.Color;
 
 public class Person extends Ball {
-
-    static {
-        radius = 15;
-    }
 
     private static int susceptibleCount = 0;
     private static int infectedCount = 0;
@@ -17,6 +14,8 @@ public class Person extends Ball {
     private int recoveryTime;
 
     Person(int simulationWidth, int simulationHeight, boolean practiceSocialDistancing) {
+        super (15);
+
         if (simulationWidth < 1 || simulationHeight < 1)
             throw new IllegalArgumentException("Width or height was less than one.");
 
@@ -79,6 +78,7 @@ public class Person extends Ball {
                 if (this.status != PersonStatus.SUSCEPTIBLE)
                     return false;
                 this.status = PersonStatus.INFECTED;
+                color = Color.RED;
                 infectedCount++;
                 susceptibleCount--;
                 return true;
@@ -87,6 +87,7 @@ public class Person extends Ball {
                 if (this.status != PersonStatus.INFECTED)
                     return false;
                 this.status = PersonStatus.RECOVERED;
+                color = Color.BLUE;
                 recoveredCount++;
                 infectedCount--;
                 return true;
@@ -95,6 +96,7 @@ public class Person extends Ball {
                 if (this.status != null) //if simulation is not new
                     return false;
                 this.status = PersonStatus.SUSCEPTIBLE;
+                color = Color.GRAY;
                 susceptibleCount++;
                 return true;
             }
@@ -116,9 +118,5 @@ public class Person extends Ball {
 
     public static int getRecoveredCount() {
         return recoveredCount;
-    }
-
-    public static double getRadius() {
-        return radius;
     }
 }
