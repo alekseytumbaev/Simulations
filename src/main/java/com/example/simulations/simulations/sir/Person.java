@@ -1,31 +1,28 @@
 package com.example.simulations.simulations.sir;
 
-import com.example.simulations.simulations.Ball;
+import com.example.simulations.simulations.AbstractBall;
 import javafx.scene.paint.Color;
 
-public class Person extends Ball {
+class Person extends AbstractBall {
 
     private static int susceptibleCount = 0;
     private static int infectedCount = 0;
     private static int recoveredCount = 0;
 
     private PersonStatus status;
-    public final boolean practiceSocialDistancing;
+    private final boolean practiceSocialDistancing;
     private int recoveryTime;
 
     Person(int simulationWidth, int simulationHeight, boolean practiceSocialDistancing) {
-        super (15);
-
-        if (simulationWidth < 1 || simulationHeight < 1)
-            throw new IllegalArgumentException("Width or height was less than one.");
+        super (15,
+                Math.random() * (simulationWidth - 15),  // 0 <= x < (width - radius)
+                Math.random() * (simulationHeight - 15), // 0 <= y < (height - radius)
+                Color.GRAY);
 
         setStatus(PersonStatus.SUSCEPTIBLE);
         recoveryTime = (int) (Math.random() * (700 - 500 + 1) + 500);
         this.practiceSocialDistancing = practiceSocialDistancing;
 
-        //coordinates and velocity
-        x = Math.random() * (simulationWidth - radius);  // 0 <= x < (width - radius)
-        y = Math.random() * (simulationHeight - radius); // 0 <= y < (height - radius)
 
         // 0.4 <= velocityX < 0.7 or -0.4 <= velocityX < -0.7
         velocityX = Math.random() * (0.7 - 0.4) + 0.4;
@@ -40,7 +37,7 @@ public class Person extends Ball {
 
     void collision(Person p) {
         //if there is a collision between two people
-        if(Math.abs(this.x - p.x) < radius && Math.abs(this.y - p.y) < radius) {
+        if(Math.abs(getX() - p.getX()) < getRadius() && Math.abs(getY() - p.getY()) < getRadius()) {
             //and one of them is infected - other one gets infected too
             if(this.status == PersonStatus.INFECTED && p.status == PersonStatus.SUSCEPTIBLE)
                 p.setStatus(PersonStatus.INFECTED);
@@ -60,8 +57,8 @@ public class Person extends Ball {
         if (practiceSocialDistancing)
             return;
 
-        x += velocityX;
-        y += velocityY;
+        moveAlongX();
+        moveAlongY();
     }
 
     void invertVelocityX() {
@@ -78,7 +75,7 @@ public class Person extends Ball {
                 if (this.status != PersonStatus.SUSCEPTIBLE)
                     return false;
                 this.status = PersonStatus.INFECTED;
-                color = Color.RED;
+                setColor(Color.RED);
                 infectedCount++;
                 susceptibleCount--;
                 return true;
@@ -87,7 +84,7 @@ public class Person extends Ball {
                 if (this.status != PersonStatus.INFECTED)
                     return false;
                 this.status = PersonStatus.RECOVERED;
-                color = Color.BLUE;
+                setColor(Color.BLUE);
                 recoveredCount++;
                 infectedCount--;
                 return true;
@@ -96,27 +93,22 @@ public class Person extends Ball {
                 if (this.status != null) //if simulation is not new
                     return false;
                 this.status = PersonStatus.SUSCEPTIBLE;
-                color = Color.GRAY;
+                setColor(Color.GRAY);
                 susceptibleCount++;
                 return true;
             }
         }
     }
 
-    //getters
-    public PersonStatus getStatus() {
-        return status;
-    }
-
-    public static int getSusceptibleCount() {
+    static int getSusceptibleCount() {
         return susceptibleCount;
     }
 
-    public static int getInfectedCount() {
+    static int getInfectedCount() {
         return infectedCount;
     }
 
-    public static int getRecoveredCount() {
+    static int getRecoveredCount() {
         return recoveredCount;
     }
 }

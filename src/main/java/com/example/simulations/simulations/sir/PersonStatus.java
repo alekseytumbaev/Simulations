@@ -1,5 +1,5 @@
 package com.example.simulations.simulations.sir;
 
-public enum PersonStatus {
+enum PersonStatus {
     SUSCEPTIBLE,INFECTED, RECOVERED
 }

@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -28,10 +27,6 @@ public class ShowSimulationController {
 
     @FXML
     private Canvas canvas;
-
-    @FXML
-    private MenuItem chooseAnotherSim;
-
 
     public void showSimulation (Simulation simulation) {
 

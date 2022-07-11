@@ -2,35 +2,13 @@ package com.example.simulations.simulations;
 
 import javafx.scene.paint.Color;
 
-public abstract class Ball {
+public interface Ball {
 
-    protected final double radius;
-    protected double x;
-    protected double y;
-    protected double velocityX;
-    protected double velocityY;
+    double getRadius();
 
-    protected Color color;
+    double getX();
 
-    protected Ball(int radius) {
-        this.radius = radius;
-    }
+    double getY();
 
-    //getters
-    public double getRadius() {
-        return radius;
-    }
-
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-
-    public Color getColor() {
-        return color;
-    }
+    Color getColor();
 }

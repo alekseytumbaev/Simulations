@@ -1,24 +1,22 @@
 package com.example.simulations.simulations.sir;
 
+import com.example.simulations.simulations.AbstractSimulation;
 import com.example.simulations.simulations.Ball;
-import com.example.simulations.simulations.Simulation;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SIRSimulation extends Simulation {
+public class SIRSimulation extends AbstractSimulation {
 
+    //TODO отдавать новый список balls или один и тот же?
     private final List<Ball> balls;
     private final List<Person> people;
 
     public SIRSimulation(int width, int height, int population, int percentOfPeoplePracticingSocialDistancing) {
-        if (width < 1 || height < 1)
-            throw new IllegalArgumentException("Width, height was less than one.");
+        super(width,height);
         if (population < 1)
             throw new IllegalArgumentException("Population was less than one.");
 
-        this.width = width;
-        this.height = height;
 
         //initializing people
         people = new ArrayList<>(population);
@@ -50,10 +48,10 @@ public class SIRSimulation extends Simulation {
         people.forEach( p -> {
             p.move();
 
-            if(p.getX() > width - p.getRadius() || p.getX() < 0)
+            if(p.getX() > getWidth() - p.getRadius() || p.getX() < 0)
                 p.invertVelocityX();
 
-            if(p.getY() > height - p.getRadius() || p.getY() < 0)
+            if(p.getY() > getHeight() - p.getRadius() || p.getY() < 0)
                 p.invertVelocityY();
 
             people.forEach(p2 -> {
@@ -66,9 +64,5 @@ public class SIRSimulation extends Simulation {
     @Override
     public List<Ball> getBalls() {
         return balls;
-    }
-
-    public List<Person> getPeople() {
-        return people;
     }
 }
