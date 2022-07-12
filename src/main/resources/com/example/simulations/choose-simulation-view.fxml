@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="TOP_CENTER" prefHeight="295.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.simulations.controllers.ChooseSimulationController">
+<VBox alignment="TOP_CENTER" prefHeight="477.0" prefWidth="522.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.simulations.controllers.ChooseSimulationController">
    <children>
       <Label prefHeight="70.0" prefWidth="145.0" text="SIR SIMULATION">
          <font>
@@ -21,10 +21,21 @@
       </HBox>
       <Label prefHeight="10.0" prefWidth="262.0" text="percent of people practicing social distancing" />
       <Slider fx:id="sirPercentOfPeoplePracticingSocialDistancing" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="399.0" showTickLabels="true" showTickMarks="true" />
-      <Button fx:id="sirStartNewSimulation" disable="true" mnemonicParsing="false" onAction="#sirTryToStartNewSimulation" text="Start New Simulation">
+      <Button fx:id="sirStartNewSimulation" disable="true" mnemonicParsing="false" onAction="#sirOnClickStartNewSimulation" text="Start New Simulation">
          <font>
             <Font size="14.0" />
          </font>
             </Button>
+      <Separator prefHeight="51.0" prefWidth="467.0" />
+      <Label prefHeight="70.0" prefWidth="263.0" text="PREDATOR-PREY SIMULATION">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="ppStartNewSimulation" mnemonicParsing="false" onAction="#ppOnClickStartNewSimulation" text="Start New Simulation">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </VBox>

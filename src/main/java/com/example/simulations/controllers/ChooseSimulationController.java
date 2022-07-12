@@ -1,6 +1,7 @@
 package com.example.simulations.controllers;
 
 import com.example.simulations.simulations.Simulation;
+import com.example.simulations.simulations.predatorprey.PPSimulation;
 import com.example.simulations.simulations.sir.SIRSimulation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.util.function.UnaryOperator;
 
 public class ChooseSimulationController {
-
+//*********************************SIR SIMULATION**********************************************************
     @FXML
     private TextField sirWidth;
 
@@ -33,6 +34,12 @@ public class ChooseSimulationController {
 
     @FXML
     private Button sirStartNewSimulation;
+//***********************************************************************************************************
+
+//*********************************PREDATOR-PREY SIMULATION**********************************************************
+    @FXML
+    private Button ppStartNewSimulation;
+//***********************************************************************************************************
 
     @FXML
     public void initialize() {
@@ -51,12 +58,10 @@ public class ChooseSimulationController {
                 sirWidth.textProperty().isEmpty().
                 or(sirHeight.textProperty().isEmpty()).
                 or(sirPopulation.textProperty().isEmpty().and(sirComputePopulation.selectedProperty().not())));
-
-
     }
 
     @FXML
-    public void sirTryToStartNewSimulation(ActionEvent event) {
+    public void sirOnClickStartNewSimulation(ActionEvent event) {
         int width, height, population;
         boolean computeSelected = sirComputePopulation.isSelected();
 
@@ -93,6 +98,12 @@ public class ChooseSimulationController {
             sir = new SIRSimulation(width,height,population,(int) sirPercentOfPeoplePracticingSocialDistancing.getValue());
 
         openShowSimulationView(sir, event);
+    }
+
+    @FXML
+    public void ppOnClickStartNewSimulation(ActionEvent event) {
+        openShowSimulationView(new PPSimulation(500,400), event);
+
     }
 
     private void openShowSimulationView(Simulation simulation, ActionEvent event) {

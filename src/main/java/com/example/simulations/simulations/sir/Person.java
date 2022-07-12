@@ -13,11 +13,8 @@ class Person extends AbstractBall {
     private final boolean practiceSocialDistancing;
     private int recoveryTime;
 
-    Person(int simulationWidth, int simulationHeight, boolean practiceSocialDistancing) {
-        super (15,
-                Math.random() * (simulationWidth - 15),  // 0 <= x < (width - radius)
-                Math.random() * (simulationHeight - 15), // 0 <= y < (height - radius)
-                Color.GRAY);
+    Person(double radius, double x, double y, boolean practiceSocialDistancing) {
+        super (radius, x, y, Color.GRAY);
 
         setStatus(PersonStatus.SUSCEPTIBLE);
         recoveryTime = (int) (Math.random() * (700 - 500 + 1) + 500);
@@ -37,7 +34,7 @@ class Person extends AbstractBall {
 
     void collision(Person p) {
         //if there is a collision between two people
-        if(Math.abs(getX() - p.getX()) < getRadius() && Math.abs(getY() - p.getY()) < getRadius()) {
+        if (Math.abs(getX() - p.getX()) < getRadius() && Math.abs(getY() - p.getY()) < getRadius()) {
             //and one of them is infected - other one gets infected too
             if(this.status == PersonStatus.INFECTED && p.status == PersonStatus.SUSCEPTIBLE)
                 p.setStatus(PersonStatus.INFECTED);

@@ -6,7 +6,7 @@ public abstract class AbstractBall implements Ball{
 
     private final double radius;
     private double x;
-    protected double y;
+    private double y;
     protected double velocityX;
     protected double velocityY;
     private Color color;
@@ -25,11 +25,15 @@ public abstract class AbstractBall implements Ball{
 
     protected void moveAlongX() {
         x += velocityX;
-    }
-    protected void moveAlongY() {
-        y += velocityY;
+        if (x < 0)
+            x = 0;
     }
 
+    protected void moveAlongY() {
+        y += velocityY;
+        if (y < 0)
+            y = 0;
+    }
 
     protected void setColor(Color color) {
         this.color = color;
@@ -55,5 +59,13 @@ public abstract class AbstractBall implements Ball{
     @Override
     public Color getColor() {
         return color;
+    }
+
+    public double getVelocityX() {
+        return velocityX;
+    }
+
+    public double getVelocityY() {
+        return velocityY;
     }
 }

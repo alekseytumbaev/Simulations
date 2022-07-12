@@ -2,10 +2,10 @@ package com.example.simulations.simulations;
 
 public abstract class AbstractSimulation implements Simulation {
 
-    private final int width;
-    private final int height;
+    private final double width;
+    private final double height;
 
-    protected AbstractSimulation(int width, int height) {
+    protected AbstractSimulation(double width, double height) {
         if (width < 1 || height < 1)
             throw new IllegalArgumentException("Width or height was less than one.");
         this.width = width;
@@ -13,12 +13,12 @@ public abstract class AbstractSimulation implements Simulation {
     }
 
     @Override
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
     @Override
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 }

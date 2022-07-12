@@ -8,7 +8,7 @@ public interface Simulation {
 
     List<Ball> getBalls();
 
-    int getWidth();
+    double getWidth();
 
-    int getHeight();
+    double getHeight();
 }

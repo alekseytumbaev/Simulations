@@ -12,7 +12,7 @@ public class SIRSimulation extends AbstractSimulation {
     private final List<Ball> balls;
     private final List<Person> people;
 
-    public SIRSimulation(int width, int height, int population, int percentOfPeoplePracticingSocialDistancing) {
+    public SIRSimulation(double width, double height, int population, int percentOfPeoplePracticingSocialDistancing) {
         super(width,height);
         if (population < 1)
             throw new IllegalArgumentException("Population was less than one.");
@@ -28,7 +28,10 @@ public class SIRSimulation extends AbstractSimulation {
             pOPPSD = Math.max(0, pOPPSD);
 
         for (int i = 0; i < population; i++) {
-            people.add(new Person(width, height, i < population * pOPPSD / 100));
+            people.add(new Person(15,
+                    Math.random() * (width - 15),  // 0 <= x < (width - radius)
+                    Math.random() * (height - 15), // 0 <= y < (height - radius)
+                    i < population * pOPPSD / 100));
         }
         people.get(people.size() - 1).setStatus(PersonStatus.INFECTED); //infect the last person
 
@@ -48,10 +51,10 @@ public class SIRSimulation extends AbstractSimulation {
         people.forEach( p -> {
             p.move();
 
-            if(p.getX() > getWidth() - p.getRadius() || p.getX() < 0)
+            if(p.getX() > getWidth() - p.getRadius() || p.getX() == 0)
                 p.invertVelocityX();
 
-            if(p.getY() > getHeight() - p.getRadius() || p.getY() < 0)
+            if(p.getY() > getHeight() - p.getRadius() || p.getY() == 0)
                 p.invertVelocityY();
 
             people.forEach(p2 -> {
