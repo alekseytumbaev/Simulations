@@ -41,7 +41,7 @@ public class Deer extends Animal {
             double xDistance = Math.abs(getX() - d.getX());
             double yDistance = Math.abs(getY() - d.getY());
 
-            if (d != this && xDistance < getRadius()/3 && yDistance < getRadius()/3 && !d.isDead())
+            if (d != this && xDistance < getRadius()/2 && yDistance < getRadius()/2 && !d.isDead())
                 return;
         }
 

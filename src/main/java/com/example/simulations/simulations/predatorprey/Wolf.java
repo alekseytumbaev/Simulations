@@ -43,6 +43,8 @@ public class Wolf extends Animal{
     }
 
     void hunt(Deer d) {
+        if (satiety > PPConfig.W_SATIETY())
+            return;
         if (d.isDead())
             return;
 

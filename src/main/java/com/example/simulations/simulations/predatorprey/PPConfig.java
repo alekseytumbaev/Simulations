@@ -19,5 +19,5 @@ class PPConfig {
     public static int D_LIFETIME() {return 700;}
     public static int D_BREEDING_PERIOD() {return 100;}
     public static int D_CUBS_PER_BIRTH() {return (int) (Math.random() * (2 - 1) + 1);}
-    public static int D_CALORIES() {return 10;}
+    public static int D_CALORIES() {return 5;}
 }
