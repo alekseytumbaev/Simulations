@@ -23,6 +23,7 @@ public class ShowSimulationController {
 
     private Simulation simulation;
     private Stage stage;
+    private Timeline timeline;
 
     @FXML
     private Label infoLabel;
@@ -40,10 +41,10 @@ public class ShowSimulationController {
         canvas.setHeight(simulation.getHeight());
         borderPane.setPrefSize(simulation.getWidth(), simulation.getHeight() + 40);
 
-        Timeline tl = new Timeline(new KeyFrame(Duration.millis(10),
+        timeline = new Timeline(new KeyFrame(Duration.millis(10),
                 e -> drawSIRSimulation(canvas.getGraphicsContext2D(), simulation)));
-        tl.setCycleCount(Animation.INDEFINITE);
-        tl.play();
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
     }
 
     private void drawSIRSimulation (GraphicsContext gc, Simulation simulation) {
@@ -71,6 +72,7 @@ public class ShowSimulationController {
         Parent root;
         try {
             root = loader.load();
+            timeline.stop();
         } catch (IOException | IllegalStateException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "Can't open window for choosing simulations." +
                     "\nError message: " + e.getMessage());

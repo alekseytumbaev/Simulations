@@ -17,6 +17,7 @@ public class SIRSimulation extends AbstractSimulation {
         if (population < 1)
             throw new IllegalArgumentException("Population was less than one.");
 
+        Person.resetCounts();
         //initializing people
         people = new ArrayList<>(population);
 

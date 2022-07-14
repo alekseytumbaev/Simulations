@@ -5,9 +5,9 @@ import javafx.scene.paint.Color;
 
 class Person extends AbstractBall {
 
-    private static int susceptibleCount = 0;
-    private static int infectedCount = 0;
-    private static int recoveredCount = 0;
+    private static int susceptibleCount;
+    private static int infectedCount;
+    private static int recoveredCount;
 
     private PersonStatus status;
     private final boolean practiceSocialDistancing;
@@ -35,9 +35,12 @@ class Person extends AbstractBall {
         if (Math.abs(getX() - p.getX()) < getRadius() && Math.abs(getY() - p.getY()) < getRadius()) {
             //and one of them is infected - other one gets infected too
             if(this.status == PersonStatus.INFECTED && p.status == PersonStatus.SUSCEPTIBLE)
-                p.setStatus(PersonStatus.INFECTED);
+                if (Math.random() < 0.7)
+                    p.setStatus(PersonStatus.INFECTED);
+
             else if (p.status == PersonStatus.INFECTED && this.status == PersonStatus.SUSCEPTIBLE)
-                this.setStatus(PersonStatus.INFECTED);
+                if (Math.random() < 0.7)
+                    this.setStatus(PersonStatus.INFECTED);
         }
     }
 
@@ -97,8 +100,8 @@ class Person extends AbstractBall {
     }
 
     void reset() {
-        recoveryTime = (int) (Math.random() * (700 - 500 + 1) + 500);
         setStatus(PersonStatus.SUSCEPTIBLE);
+        recoveryTime = (int) (Math.random() * (700 - 500 + 1) + 500);
     }
 
     static void resetCounts() {
