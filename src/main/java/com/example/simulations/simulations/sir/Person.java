@@ -10,24 +10,24 @@ class Person extends AbstractBall {
     private static int recoveredCount;
 
     private PersonStatus status;
-    private final boolean practiceSocialDistancing;
     private int recoveryTime;
 
     Person(double radius, double x, double y, boolean practiceSocialDistancing) {
         super (radius, x, y, Color.GRAY);
 
         reset();
-        this.practiceSocialDistancing = practiceSocialDistancing;
 
-        // 0.4 <= velocityX < 0.7 or -0.4 <= velocityX < -0.7
-        velocityX = Math.random() * (0.7 - 0.4) + 0.4;
-        if (Math.random() > 0.5)
-            invertVelocityX();
+        if (!practiceSocialDistancing) {
+            // 0.4 <= velocityX < 0.7 or -0.4 <= velocityX < -0.7
+            velocityX = Math.random() * (0.7 - 0.4) + 0.4;
+            if (Math.random() > 0.5)
+                invertVelocityX();
 
-        // 0.4 <= velocityY < 0.7 or -0.4 <= velocityY < -0.7
-        velocityY = Math.random() * (0.7 - 0.4) + 0.4;
-        if (Math.random() > 0.5)
-            invertVelocityY();
+            // 0.4 <= velocityY < 0.7 or -0.4 <= velocityY < -0.7
+            velocityY = Math.random() * (0.7 - 0.4) + 0.4;
+            if (Math.random() > 0.5)
+                invertVelocityY();
+        }
     }
 
     void collision(Person p) {
@@ -51,9 +51,6 @@ class Person extends AbstractBall {
             else
                 recoveryTime--;
         }
-
-        if (practiceSocialDistancing)
-            return;
 
         moveAlongX();
         moveAlongY();
