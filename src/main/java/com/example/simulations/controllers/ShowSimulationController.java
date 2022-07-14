@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -22,6 +23,9 @@ public class ShowSimulationController {
 
     private Simulation simulation;
     private Stage stage;
+
+    @FXML
+    private Label infoLabel;
 
     @FXML
     private BorderPane borderPane;
@@ -53,6 +57,7 @@ public class ShowSimulationController {
             gc.fillOval(p.getX(), p.getY(),  p.getRadius(), p.getRadius());
         });
 
+        infoLabel.setText(simulation.getCurrentInfo());
         simulation.makeOneStep();
     }
 

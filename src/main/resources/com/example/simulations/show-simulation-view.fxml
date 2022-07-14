@@ -25,4 +25,7 @@
    <center>
       <Canvas fx:id="canvas" height="332.0" width="591.0" BorderPane.alignment="CENTER" />
    </center>
+   <bottom>
+      <Label fx:id="infoLabel" text="Label" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

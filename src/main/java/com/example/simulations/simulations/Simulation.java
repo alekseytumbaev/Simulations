@@ -10,6 +10,8 @@ public interface Simulation {
 
     List<Ball> getBalls();
 
+    String getCurrentInfo();
+
     double getWidth();
 
     double getHeight();

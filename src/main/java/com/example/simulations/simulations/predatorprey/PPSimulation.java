@@ -3,6 +3,7 @@ package com.example.simulations.simulations.predatorprey;
 import com.example.simulations.simulations.AbstractSimulation;
 import com.example.simulations.simulations.Ball;
 
+import java.text.MessageFormat;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -93,5 +94,10 @@ public class PPSimulation extends AbstractSimulation {
         balls.addAll(deer);
         balls.addAll(wolves);
         return balls;
+    }
+
+    @Override
+    public String getCurrentInfo() {
+        return MessageFormat.format("Wolves: {0}\tDeer: {1}", wolves.size(), deer.size());
     }
 }

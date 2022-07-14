@@ -99,7 +99,6 @@ public class ChooseSimulationController {
     @FXML
     public void ppOnClickStartNewSimulation(ActionEvent event) {
         openShowSimulationView(new PPSimulation(), event);
-
     }
 
     private void openShowSimulationView(Simulation simulation, ActionEvent event) {

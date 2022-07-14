@@ -3,6 +3,7 @@ package com.example.simulations.simulations.sir;
 import com.example.simulations.simulations.AbstractSimulation;
 import com.example.simulations.simulations.Ball;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,9 +70,14 @@ public class SIRSimulation extends AbstractSimulation {
         people.get(people.size() - 1).setStatus(PersonStatus.INFECTED); //infect the last person
     }
 
-
     @Override
     public List<Ball> getBalls() {
         return balls;
+    }
+
+    @Override
+    public String getCurrentInfo() {
+        return MessageFormat.format("Susceptible: {0}\tInfected: {1}\tRecovered: {2}",
+                Person.getSusceptibleCount(), Person.getInfectedCount(), Person.getRecoveredCount());
     }
 }
