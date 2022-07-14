@@ -6,18 +6,17 @@ import java.util.List;
 
 public class Deer extends Animal {
 
+    public final int calories = PPConfig.D_CALORIES();
     private boolean killed = false;
 
     Deer(double x, double y) {
-        super(300, 60, 25, x, y, Color.SANDYBROWN);
+        super(PPConfig.D_LIFETIME(), PPConfig.D_BREEDING_PERIOD(), PPConfig.D_RADIUS(), x, y, Color.SANDYBROWN);
 
-        // 0.4 <= velocityX < 0.7 or -0.4 <= velocityX < -0.7
-        velocityX = Math.random() * (0.9 - 0.6) + 0.6;
+        velocityX = PPConfig.D_VELOCITY();
         if (Math.random() > 0.5)
             invertVelocityX();
 
-        // 0.4 <= velocityY < 0.7 or -0.4 <= velocityY < -0.7
-        velocityY = Math.random() * (0.9 - 0.6) + 0.6;
+        velocityY = PPConfig.D_VELOCITY();
         if (Math.random() > 0.5)
             invertVelocityY();
     }
@@ -42,15 +41,13 @@ public class Deer extends Animal {
             double xDistance = Math.abs(getX() - d.getX());
             double yDistance = Math.abs(getY() - d.getY());
 
-            if (d != this && xDistance < getRadius()/3 && yDistance < getRadius()/3 && !d.isDead()) {
+            if (d != this && xDistance < getRadius()/3 && yDistance < getRadius()/3 && !d.isDead())
                 return;
-            }
         }
 
-
-        if (Math.random() < 0.8) {
-            newbornDeer.add(new Deer(getX(), getY()));
-        }
+        if (Math.random() < 0.8)
+            for (int i = 0; i < PPConfig.D_CUBS_PER_BIRTH(); i++)
+                newbornDeer.add(new Deer(getX(), getY()));
     }
 
     void kill() {

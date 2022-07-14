@@ -6,19 +6,16 @@ import java.util.List;
 
 public class Wolf extends Animal{
 
-    private static final int INITIAL_SATIETY = 400;
-    private int satiety = INITIAL_SATIETY;
+    private int satiety = PPConfig.W_SATIETY();
 
     protected Wolf(double x, double y) {
-        super(700, 70, 25, x, y, Color.GRAY);
+        super(PPConfig.W_LIFETIME(), PPConfig.W_BREEDING_PERIOD(), PPConfig.W_RADIUS(), x, y, Color.GRAY);
 
-        // 0.4 <= velocityX < 0.7 or -0.4 <= velocityX < -0.7
-        velocityX = Math.random() * (0.7 - 0.4) + 0.4;
+        velocityX = PPConfig.W_VELOCITY();
         if (Math.random() > 0.5)
             invertVelocityX();
 
-        // 0.4 <= velocityY < 0.7 or -0.4 <= velocityY < -0.7
-        velocityY = Math.random() * (0.7 - 0.4) + 0.4;
+        velocityY = PPConfig.W_VELOCITY();
         if (Math.random() > 0.5)
             invertVelocityY();
     }
@@ -40,8 +37,9 @@ public class Wolf extends Animal{
         if (isDead() || getAge() == 0 || getAge() % getBreedingPeriod() != 0)
             return;
 
-        if (satiety > INITIAL_SATIETY - getBreedingPeriod())
-            newbornWolves.add(new Wolf(getX(),getY()));
+        if (Math.random() < (double) (satiety - getBreedingPeriod())/ PPConfig.W_SATIETY())
+            for (int i = 0; i < PPConfig.W_CUBS_PER_BIRTH(); i++)
+                newbornWolves.add(new Wolf(getX(),getY()));
     }
 
     void hunt(Deer d) {
@@ -53,7 +51,7 @@ public class Wolf extends Animal{
 
         //eat deer if it's close enough
         if (xDistance < getRadius() && yDistance < getRadius()) {
-            satiety += 13;
+            satiety += d.calories;
             d.kill();
         }
     }

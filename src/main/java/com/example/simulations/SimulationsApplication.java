@@ -12,7 +12,7 @@ public class SimulationsApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SimulationsApplication.class.getResource("choose-simulation-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 476, 400);
-        stage.setTitle("Simulation");
+        stage.setTitle("Simulations");
         stage.setScene(scene);
         stage.show();
     }
@@ -20,5 +20,4 @@ public class SimulationsApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
-
 }

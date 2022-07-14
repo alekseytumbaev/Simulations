@@ -8,7 +8,6 @@ import java.util.List;
 
 public class SIRSimulation extends AbstractSimulation {
 
-    //TODO отдавать новый список balls или один и тот же?
     private final List<Ball> balls;
     private final List<Person> people;
 

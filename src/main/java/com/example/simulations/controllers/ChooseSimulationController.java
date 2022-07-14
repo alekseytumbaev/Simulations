@@ -36,11 +36,6 @@ public class ChooseSimulationController {
     private Button sirStartNewSimulation;
 //***********************************************************************************************************
 
-//*********************************PREDATOR-PREY SIMULATION**********************************************************
-    @FXML
-    private Button ppStartNewSimulation;
-//***********************************************************************************************************
-
     @FXML
     public void initialize() {
         UnaryOperator<TextFormatter.Change> digitsFilter = change -> {
@@ -102,7 +97,7 @@ public class ChooseSimulationController {
 
     @FXML
     public void ppOnClickStartNewSimulation(ActionEvent event) {
-        openShowSimulationView(new PPSimulation(500,400), event);
+        openShowSimulationView(new PPSimulation(), event);
 
     }
 
