@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.function.UnaryOperator;
 
 public class ChooseSimulationController {
+
 //*********************************SIR SIMULATION**********************************************************
     @FXML
     private TextField sirWidth;

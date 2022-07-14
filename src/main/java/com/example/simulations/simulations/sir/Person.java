@@ -16,10 +16,8 @@ class Person extends AbstractBall {
     Person(double radius, double x, double y, boolean practiceSocialDistancing) {
         super (radius, x, y, Color.GRAY);
 
-        setStatus(PersonStatus.SUSCEPTIBLE);
-        recoveryTime = (int) (Math.random() * (700 - 500 + 1) + 500);
+        reset();
         this.practiceSocialDistancing = practiceSocialDistancing;
-
 
         // 0.4 <= velocityX < 0.7 or -0.4 <= velocityX < -0.7
         velocityX = Math.random() * (0.7 - 0.4) + 0.4;
@@ -86,15 +84,27 @@ class Person extends AbstractBall {
                 infectedCount--;
                 return true;
             }
-            default -> {
-                if (this.status != null) //if simulation is not new
-                    return false;
+            case SUSCEPTIBLE -> {
                 this.status = PersonStatus.SUSCEPTIBLE;
                 setColor(Color.GRAY);
                 susceptibleCount++;
                 return true;
             }
+            default -> {
+                return false;
+            }
         }
+    }
+
+    void reset() {
+        recoveryTime = (int) (Math.random() * (700 - 500 + 1) + 500);
+        setStatus(PersonStatus.SUSCEPTIBLE);
+    }
+
+    static void resetCounts() {
+        susceptibleCount = 0;
+        infectedCount = 0;
+        recoveredCount = 0;
     }
 
     static int getSusceptibleCount() {

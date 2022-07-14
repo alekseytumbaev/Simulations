@@ -16,7 +16,6 @@ public class SIRSimulation extends AbstractSimulation {
         if (population < 1)
             throw new IllegalArgumentException("Population was less than one.");
 
-
         //initializing people
         people = new ArrayList<>(population);
 
@@ -34,7 +33,6 @@ public class SIRSimulation extends AbstractSimulation {
         }
         people.get(people.size() - 1).setStatus(PersonStatus.INFECTED); //infect the last person
 
-
         balls = new ArrayList<>(people);
     }
 
@@ -47,6 +45,7 @@ public class SIRSimulation extends AbstractSimulation {
 
     @Override
     public void makeOneStep() {
+
         people.forEach( p -> {
             p.move();
 
@@ -62,6 +61,14 @@ public class SIRSimulation extends AbstractSimulation {
             });
         });
     }
+
+    @Override
+    public void reset() {
+        Person.resetCounts();
+        people.forEach(Person::reset);
+        people.get(people.size() - 1).setStatus(PersonStatus.INFECTED); //infect the last person
+    }
+
 
     @Override
     public List<Ball> getBalls() {

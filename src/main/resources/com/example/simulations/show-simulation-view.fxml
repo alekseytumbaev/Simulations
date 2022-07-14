@@ -11,7 +11,7 @@
           <Menu mnemonicParsing="false" text="Actions">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#onClickChooseAnotherSim" text="Choose another sim" />
-                  <MenuItem mnemonicParsing="false" text="Reset sim" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickReset" text="Reset sim" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="About">

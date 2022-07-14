@@ -20,6 +20,7 @@ import java.io.IOException;
 
 public class ShowSimulationController {
 
+    private Simulation simulation;
     private Stage stage;
 
     @FXML
@@ -29,6 +30,7 @@ public class ShowSimulationController {
     private Canvas canvas;
 
     public void showSimulation (Simulation simulation) {
+        this.simulation = simulation;
 
         canvas.setWidth(simulation.getWidth());
         canvas.setHeight(simulation.getHeight());
@@ -73,5 +75,10 @@ public class ShowSimulationController {
 
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    public void onClickReset() {
+        simulation.reset();
     }
 }

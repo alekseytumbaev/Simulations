@@ -6,6 +6,8 @@ public interface Simulation {
 
     void makeOneStep();
 
+    void reset();
+
     List<Ball> getBalls();
 
     double getWidth();

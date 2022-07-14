@@ -10,29 +10,12 @@ import java.util.List;
 public class PPSimulation extends AbstractSimulation {
 
     private final List<Ball> balls = new LinkedList<>();
-    private final List<Deer> deer;
-    private final List<Wolf> wolves;
+    private final List<Deer> deer = new LinkedList<>();
+    private final List<Wolf> wolves = new LinkedList<>();
 
     public PPSimulation() {
         super(PPConfig.WIDTH(), PPConfig.HEIGHT());
-
-          deer = new LinkedList<>();
-        for (int i = 0; i < 20; i++)
-            deer.add(new Deer(getWidth()/2.4,getHeight()/2.4));
-
-        for (int i = 0; i < 20; i++)
-            deer.add(new Deer(getWidth()/1.5,getHeight()/2.4));
-
-        for (int i = 0; i < 20; i++)
-            deer.add(new Deer(getWidth()/2.4,getHeight()/1.5));
-
-        for (int i = 0; i < 20; i++)
-            deer.add(new Deer(getWidth()/1.5,getHeight()/1.5));
-
-
-        wolves = new LinkedList<>();
-        for (int i = 0; i < 10; i++)
-            wolves.add(new Wolf(getWidth()/2, getHeight()/2));
+        reset();
     }
 
     @Override
@@ -79,6 +62,29 @@ public class PPSimulation extends AbstractSimulation {
                 wit.remove();
         }
         wolves.addAll(newbornWolves);
+    }
+
+    @Override
+    public void reset() {
+        deer.clear();
+        wolves.clear();
+
+        //deer
+        for (int i = 0; i < 20; i++)
+            deer.add(new Deer(getWidth()/2.4,getHeight()/2.4));
+
+        for (int i = 0; i < 20; i++)
+            deer.add(new Deer(getWidth()/1.5,getHeight()/2.4));
+
+        for (int i = 0; i < 20; i++)
+            deer.add(new Deer(getWidth()/2.4,getHeight()/1.5));
+
+        for (int i = 0; i < 20; i++)
+            deer.add(new Deer(getWidth()/1.5,getHeight()/1.5));
+
+        //wolves
+        for (int i = 0; i < 10; i++)
+            wolves.add(new Wolf(getWidth()/2, getHeight()/2));
     }
 
     @Override
